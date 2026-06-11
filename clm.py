@@ -1,32 +1,28 @@
-# Mini CLM Tracker
+while True:
+    print("\n1. Create Contract")
+    print("2. View Contracts")
+    print("3. Update Status")
+    print("4. Exit")
 
-contracts = []
+    choice = input("Enter choice: ")
 
-def create_contract(name, vendor, status):
-    contract = {
-        "name": name,
-        "vendor": vendor,
-        "status": status
-    }
-    contracts.append(contract)
-    print("✅ Contract created!")
+    if choice == "1":
+        name = input("Enter contract name: ")
+        vendor = input("Enter vendor: ")
+        status = input("Enter status: ")
+        create_contract(name, vendor, status)
 
-def view_contracts():
-    print("\n📄 Contract List:")
-    for c in contracts:
-        print(f"Name: {c['name']}, Vendor: {c['vendor']}, Status: {c['status']}")
+    elif choice == "2":
+        view_contracts()
 
-def update_status(name, new_status):
-    for c in contracts:
-        if c["name"] == name:
-            c["status"] = new_status
-            print("✅ Status updated!")
-            return
-    print("❌ Contract not found")
+    elif choice == "3":
+        name = input("Enter contract name: ")
+        new_status = input("Enter new status: ")
+        update_status(name, new_status)
 
-# Sample Run
-create_contract("Vendor Agreement", "ABC Corp", "Draft")
-view_contracts()
+    elif choice == "4":
+        break
 
-update_status("Vendor Agreement", "Approved")
-view_contracts()
+    else:
+        print("Invalid choice")
+``
