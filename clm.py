@@ -1,18 +1,15 @@
-valid_status = ["Draft", "Pending Approval", "Approved", "Signed"]
-def move_to_approval(name):
-    for c in contracts:
-        if c["name"] == name and c["status"] == "Draft":
-            c["status"] = "Pending Approval"
-            print("✅ Moved to Approval Stage")
-            return
+valid_transitions = {
+    "Draft": "Pending Approval",
+    "Pending Approval": "Approved",
+    "Approved": "Signed"
+}
 
-def update_status(name, new_status):
-    if new_status not in valid_status:
-        print("❌ Invalid status")
-        return
-    
+def move_to_next_stage(name):
     for c in contracts:
-        if c["name"] == name:
-            c["status"] = new_status
-            print("✅ Status updated")
+        current_status = c["status"]
+        if c["name"] == name and current_status in valid_transitions:
+            c["status"] = valid_transitions[current_status]
+            print(f"✅ Moved to {c['status']}")
             return
+    print("❌ Cannot move to next stage")
+``
